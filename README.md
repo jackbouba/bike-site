@@ -1,4 +1,4 @@
-# Best Site Ever
+# Best Website Ever
 
 ## This is the best
 
