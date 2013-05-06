@@ -1,48 +1,9 @@
-@import "bootstrap.min";
-@import "bootstrap-responsive.min";
-
 // The Sass comment elf was here
 /* The CSS comment elf was here */
                                                                        
 // VARIABLES ========================================================= 
-$green: #576658;
-$lt-green: lighten($green, 35%);
-$drk-red: #3F2427;
-$mauve: #AF737B;
-$lt-mauve: lighten($mauve, 35%);
                                                                        
 // MIXINS AND PLACEHOLDERS =========================================== 
-%ir {
-  text-indent: 100%;                                                   
-  white-space: nowrap;                                                 
-  overflow: hidden;                                                    
-}
-
-@mixin prefix($prop, $value) {
-  -webkit-#{$prop}: $value;
-  -moz-#{$prop}: $value;
-  -o-#{$prop}: $value;                                   
-  #{$prop}: $value;
-}
-
-@mixin button($bg) {
-  @include prefix(border-radius, 8px);                             
-  background: $bg;                                                 
-  border: none;                                                        
-  border-bottom: 4px solid darken($bg, 10%);                                       
-  color: #FFF;                                                         
-  font-size: 20px;                                                     
-  font-weight: 600;                                                    
-  padding: 20px 35px;                                                  
-  text-shadow: 0 1px 1px rgba(0,0,0,0.75);                             
-  text-transform: uppercase;   
-  &:hover {                                                
-    background: darken($bg, 5%);                                  
-  }   
-  &:active {                                               
-    background: lighten($bg, 5%);                                  
-  }
-}
                                                                        
 // GLOBAL & BOOTSTRAP OVERRIDES ====================================== 
                                                                        
@@ -63,105 +24,86 @@ body {
 }                                                                      
 section {                                                              
   padding: 40px 0;                                                     
-} 
-img {
-  background-color: #FFF;
-  padding: 3%;
-  max-width: 94%;
-  @include prefix(box-shadow, 0 1px 4px rgba(0,0,0,.4));
-}                                                                     
+}                                                                      
                                                                        
 // NAV & HEADER ====================================================== 
                                                                        
 nav {                                                                  
-  background: $drk-red url('../img/noise.png');                         
+  background: #3F2427 url('../img/noise.png');                         
 }                                                                      
 .nav {                                                                 
   margin: 5px 0;                                                       
   position: relative;                                                  
 }                                                                      
 .logo {                                                                
-  background-color: $green;                                           
+  // Here's our favorite green!                                        
+  background-color: #576658;                                           
   padding: 20px 10px;                                                  
-  position: absolute;
-  &:after {                                                          
-    border-color: $green $green transparent $green;                   
-    border-style: solid;                                                 
-    border-width: 0 88px 20px 88px;                                      
-    content: "";                                                         
-    position: absolute;                                                  
-    bottom: -20px;                                                       
-    left: 0;                                                             
-    width: 0;                                                            
-    height: 0;                                                           
-  }
-  span {                                                           
-    background: url('../img/logo.png');                                  
-    display: block;                                                      
-    width: 156px;                                                        
-    height: 59px;  
-    @extend %ir;   
-    @include prefix(transform, rotate(-6deg));                                                                                                
-  }                                                  
-}                                                                                                                                     
+  position: absolute;                                                  
+}                                                                      
+// Can these be nested?                                                
+.logo:after {                                                          
+  // Here's our favorite green again!                                  
+  border-color: #576658 #576658 transparent #576658;                   
+  border-style: solid;                                                 
+  border-width: 0 88px 20px 88px;                                      
+  content: "";                                                         
+  position: absolute;                                                  
+  bottom: -20px;                                                       
+  left: 0;                                                             
+  width: 0;                                                            
+  height: 0;                                                           
+}                                                                      
+.logo span {                                                           
+  background: url('../img/logo.png');                                  
+  display: block;                                                      
+  width: 156px;                                                        
+  height: 59px;                                                        
+  // Start image replacement                                           
+  text-indent: 100%;                                                   
+  white-space: nowrap;                                                 
+  overflow: hidden;                                                    
+  // End image replacement                                             
+}                                                                      
                                                                        
 .hero-unit {                                                           
   background: url('../img/wall.jpg') no-repeat left bottom;            
-  // Start annoying vendor prefix chunk                                  
-  @include prefix(background-size, cover);                                            
+  // Start annoying vendor prefix chunk                                
+  -webkit-background-size: cover;                                      
+  -moz-background-size: cover;                                         
+  -o-background-size: cover;                                           
+  background-size: cover;                                              
   // End annoying vendor prefix chunk                                  
-  margin-bottom: 0;
-  @include prefix(border-radius, 0);  
-  .btn {                                                      
-    @include button($green);                                     
-  }  
-  h1 {
-    @media (max-width: 767px) {
-      font-size: 30px;
-      margin-bottom: 20px;
-    }
-  }                          
+  margin-bottom: 0;                                                    
+  // Rounded border needs to get fixed                                 
 }                                                                      
-                                                                                                                                                                                                            
+                                                                       
+// Can this be nested?                                                 
+.hero-unit .btn {                                                      
+  // Border radius needs vendor prefixes                               
+  border-radius: 8px;                                                  
+  background: #576658;                                                 
+  border: none;                                                        
+  // Needs a dark border bottom                                        
+  color: #FFF;                                                         
+  font-size: 20px;                                                     
+  font-weight: 600;                                                    
+  padding: 20px 35px;                                                  
+  text-shadow: 0 1px 1px rgba(0,0,0,0.75);                             
+  text-transform: uppercase;                                           
+}                                                                      
+.hero-unit .btn:hover {                                                
+  // needs a darker background-color                                   
+}                                                                      
+.hero-unit .btn:active {                                               
+  // needs a lighter background-color                                  
+}                                                                      
                                                                        
 // ABOUT SECTION  ==================================================== 
-.section-about {
-  background-color: $lt-green;
-  .banner {
-    background-color: $green;
-  }
-  .btn {
-    @include button($green);
-  }
-}   
                                                                        
 // BIKES SECTION ===================================================== 
-.section-bikes {
-  background-color: $lt-mauve;
-  .banner {
-    background-color: $mauve;
-  }
-  .btn {
-    @include button($mauve);
-  }
-  .span4 {
-    margin-bottom: 20px;
-  }
-}
                                                                        
 // FOOTER ============================================================ 
-footer {
-  .btn {
-    @include button($mauve);
-  }
-}
                                                                        
 // MEDIA QUERIES ===================================================== 
-@media (max-width: 767px) {
-  body {
-    padding: 0;
-  }
-  .container {
-    margin: 0 20px;
-  }
-}                                                                       
+                                                                       
